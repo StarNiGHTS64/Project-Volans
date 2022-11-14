@@ -14,6 +14,9 @@ import cv2
 #Import matplotlib for plotting the image
 from matplotlib import pyplot as plt
 
+import math
+#import torch
+
 
 
 #retro.data.list_games()
@@ -89,10 +92,36 @@ def _seed(self, seed=None):
 
 # Starts de game environment - It can only be running one at a time
 env = SonicTheHedgehog2()
-#env = retro.make(game='SonicTheHedgehog2-Genesis', state='ChemicalPlantZone.Act1', scenario='contest')
-#env.seed(0)
+env.seed(0)
+
+print("The size of frame is: ", env.observation_space.shape)
+print("No. of Actions: ", env.action_space.n)
+
+
+#Limit Posible Actions
+posible_actions = {
+    # No Operation
+    0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    # Left
+    1: [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    # Right
+    2: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+    # Left, Down
+    3: [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+    # Right, Down
+    4: [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+    # Down
+    5: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    # Down, B
+    6: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    # B
+    7: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
+
+
+
 # Sample the observation space
-print(env.observation_space)
+#print(env.observation_space)
 
 
 # Reset game to starting state
@@ -120,7 +149,6 @@ for game in range(1):
         #time.sleep(0.005)
         
         if reward > 0:
-            print('x')
             print(reward)
         
     print(info)
@@ -128,8 +156,3 @@ for game in range(1):
 
 #Close Previous Environment if exists
 env.close()
-
-#Observation Preprocess - greyscale, frame delta, resize the frame so we have less pixels
-#Filter the action DONE
-#Change Reward Function - set this to x position change
-
