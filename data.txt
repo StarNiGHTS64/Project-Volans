@@ -1,0 +1,23 @@
+{'prev_lives': 3, 
+'offset_x': -96, 
+'x': 99, 
+'lives': 3, 
+'screen_x_end': 10112, 
+'xpos_last_x': 0, 
+'game_mode': 12, 
+'prev_progress': 0, 
+'score': 0, 
+'zone': 13, 
+'level_end_bonus': 0, 
+'rings': 0, 
+'act': 0, 
+'y': 494, 
+'screen_x': 0, 
+'screen_y': 389}
+
+
+(224, 320, 3)
+
+26:37
+
+(200, 256, 3) -> (84, 84, 1)
